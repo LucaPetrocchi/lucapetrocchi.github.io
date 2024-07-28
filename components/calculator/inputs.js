@@ -17,11 +17,17 @@ function inputs() {
     distanceInput.min = '1';
     distanceInput.step = 'any';
     distanceInput.required = true;
+    const getInputValues = () => {
+        const f = parseFloat(frequencyInput.value);
+        const d = parseFloat(distanceInput.value);
+        return [f, d];
+    };
     return {
         frequencyInputLabel,
         frequencyInput,
         distanceInputLabel,
-        distanceInput
+        distanceInput,
+        getInputValues
     };
 }
 export default inputs;

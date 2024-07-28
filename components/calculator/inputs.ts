@@ -22,11 +22,19 @@ function inputs() {
   distanceInput.step = 'any'
   distanceInput.required = true
 
+  const getInputValues = (): [f: number, d: number] => {
+    const f = parseFloat(frequencyInput.value)
+    const d = parseFloat(distanceInput.value)
+
+    return [f, d]
+  }
+
   return {
     frequencyInputLabel,
     frequencyInput,
     distanceInputLabel,
-    distanceInput
+    distanceInput,
+    getInputValues
   }
 
 }

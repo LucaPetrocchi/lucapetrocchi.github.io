@@ -3,26 +3,30 @@ import getFresnel from "../../utils/getFresnel.js"
 import hiddenP from "../hiddenP/hiddenP.js"
 import inputs from "./inputs.js";
 import submitButton from "../submitButton/submitButton.js";
+import appendListToNode from "../../utils/appendListToNode.js";
+import modes from "./modes.js";
 
 function calculator() {
   const [resultP, showResult] = hiddenP();
 
   const { 
+    distanceForm,
+    frequencyForm,
+    getModeValues
+  } = modes()
+
+  const { 
     frequencyInputLabel,
     frequencyInput,
     distanceInput,
-    distanceInputLabel
+    distanceInputLabel,
+    getInputValues
   } = inputs()
 
-  const getInputValues = (): [f: number, d: number] => {
-    const f = parseFloat(frequencyInput.value)
-    const d = parseFloat(distanceInput.value)
-
-    return [f, d]
-  }
 
   const validateInputs = () => {
     const [f, d] = getInputValues()
+    
     if (isNaN(f) || isNaN(d)) {
       alert('Recuerde ingresar valor')
       return false
@@ -37,7 +41,12 @@ function calculator() {
   }
 
   const submitFunc = () => {
-    const [f, d] = getInputValues()
+    let [f, d] = getInputValues()
+    const [fT, dT] = getModeValues()
+
+    if (fT === 'mhz') f = f / 1000
+    if (dT === 'm') d = d / 1000
+
     showResult(`${getFresnel(d, f)}`)
   }
 
@@ -49,16 +58,16 @@ function calculator() {
   
   const formElement = document.createElement('form');
   
-  [
+  appendListToNode([
+    frequencyForm,
+    distanceForm,
     frequencyInputLabel, 
     frequencyInput, 
     distanceInputLabel, 
     distanceInput,
     button,
     resultP
-  ].map((e) => {
-    formElement.appendChild(e)
-  })
+  ], formElement)
   
   return formElement
 }
