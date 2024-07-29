@@ -3,53 +3,53 @@ import getRadioButton from "../../utils/getRadioButton.js"
 
 function modes() {
 
-  const [distanceKm, distanceKmLabel] = getRadioButton(
+  function modeForm () {
+    const form = document.createElement('form')
+    form.classList.add('flex', 'gap-4', 'border', 'border-black')
+    return form
+  }
+
+  const distanceKm = getRadioButton(
     'Kilómetros',
     'distance',
     'km',
-    'km'
+    'km',
+    true
   )
 
-  distanceKm.checked = true
-
-  const [distanceM, distanceMLabel] = getRadioButton(
+  const distanceM = getRadioButton(
     'Metros',
     'distance',
     'm',
     'm'
   )
 
-  const distanceForm = document.createElement('form')
+  const distanceModes = modeForm()
   appendListToNode([
     distanceKm,
-    distanceKmLabel,
     distanceM,
-    distanceMLabel
-  ], distanceForm)
+  ], distanceModes)
 
-  const [freqGhz, freqGhzLabel] = getRadioButton(
+  const freqGhz = getRadioButton(
     'Gigahercios',
     'frequency',
     'ghz',
-    'ghz'
+    'ghz',
+    true
   )
 
-  freqGhz.checked = true
-
-  const [freqMhz, freqMhzLabel] = getRadioButton(
+  const freqMhz = getRadioButton(
     'Megahercios',
     'frequency',
     'mhz',
     'mhz'
   )
 
-  const frequencyForm = document.createElement('form')
+  const frequencyModes = modeForm()
   appendListToNode([
     freqGhz,
-    freqGhzLabel,
     freqMhz,
-    freqMhzLabel
-  ], frequencyForm)
+  ], frequencyModes)
 
   const getModeValues = (): [string, string] => {
     const dist = document.querySelector('input[name="distance"]:checked') as HTMLInputElement
@@ -67,8 +67,8 @@ function modes() {
   }
 
   return {
-    distanceForm,
-    frequencyForm,
+    distanceModes,
+    frequencyModes,
     getModeValues
   }
 

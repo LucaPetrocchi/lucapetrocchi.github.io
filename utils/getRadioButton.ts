@@ -1,9 +1,15 @@
+import appendListToNode from "./appendListToNode.js"
+
 function getRadioButton(
   labelText: string,
   name: string,
   id: string,
   value: string,
-): [HTMLInputElement, HTMLLabelElement] {
+  checked?: boolean
+) {
+
+  const wrapper = document.createElement('div')
+  wrapper.classList.add('flex', 'gap-1')
 
   const label = document.createElement('label')
   label.innerText = labelText
@@ -14,8 +20,11 @@ function getRadioButton(
   input.id = id
   input.name = name
   input.value = value
+  if (checked) input.checked = true
   
-  return [input, label]
+  appendListToNode([input, label], wrapper)
+
+  return wrapper
 }
 
 export default getRadioButton

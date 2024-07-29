@@ -1,26 +1,25 @@
 import appendListToNode from "../../utils/appendListToNode.js";
 import getRadioButton from "../../utils/getRadioButton.js";
 function modes() {
-    const [distanceKm, distanceKmLabel] = getRadioButton('Kilómetros', 'distance', 'km', 'km');
-    distanceKm.checked = true;
-    const [distanceM, distanceMLabel] = getRadioButton('Metros', 'distance', 'm', 'm');
-    const distanceForm = document.createElement('form');
+    function modeForm() {
+        const form = document.createElement('form');
+        form.classList.add('flex', 'gap-4', 'border', 'border-black');
+        return form;
+    }
+    const distanceKm = getRadioButton('Kilómetros', 'distance', 'km', 'km', true);
+    const distanceM = getRadioButton('Metros', 'distance', 'm', 'm');
+    const distanceModes = modeForm();
     appendListToNode([
         distanceKm,
-        distanceKmLabel,
         distanceM,
-        distanceMLabel
-    ], distanceForm);
-    const [freqGhz, freqGhzLabel] = getRadioButton('Gigahercios', 'frequency', 'ghz', 'ghz');
-    freqGhz.checked = true;
-    const [freqMhz, freqMhzLabel] = getRadioButton('Megahercios', 'frequency', 'mhz', 'mhz');
-    const frequencyForm = document.createElement('form');
+    ], distanceModes);
+    const freqGhz = getRadioButton('Gigahercios', 'frequency', 'ghz', 'ghz', true);
+    const freqMhz = getRadioButton('Megahercios', 'frequency', 'mhz', 'mhz');
+    const frequencyModes = modeForm();
     appendListToNode([
         freqGhz,
-        freqGhzLabel,
         freqMhz,
-        freqMhzLabel
-    ], frequencyForm);
+    ], frequencyModes);
     const getModeValues = () => {
         const dist = document.querySelector('input[name="distance"]:checked');
         const freq = document.querySelector('input[name="frequency"]:checked');
@@ -41,8 +40,8 @@ function modes() {
         return [fT, dT];
     };
     return {
-        distanceForm,
-        frequencyForm,
+        distanceModes,
+        frequencyModes,
         getModeValues
     };
 }

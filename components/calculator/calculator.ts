@@ -7,21 +7,26 @@ import appendListToNode from "../../utils/appendListToNode.js";
 import modes from "./modes.js";
 
 function calculator() {
+
+  function formDiv() {
+    const form = document.createElement('div')
+    form.classList.add('w-full', 'flex', 'flex-col')
+    return form
+  }
+
   const [resultP, showResult] = hiddenP();
 
   const { 
-    distanceForm,
-    frequencyForm,
+    distanceModes,
+    frequencyModes,
     getModeValues
   } = modes()
 
-  const { 
-    frequencyInputLabel,
+  const [
     frequencyInput,
     distanceInput,
-    distanceInputLabel,
     getInputValues
-  } = inputs()
+   ] = inputs()
 
 
   const validateInputs = () => {
@@ -51,20 +56,34 @@ function calculator() {
   }
 
   const button = submitButton(
-    'calcular',
+    'Calcular',
     validateInputs,
     submitFunc
   )
+
+  button.classList.add('w-full', 'm-2', 'p-2', 'bg-blue-900', 'text-white',
+    'rounded-xl', 'basis-full'
+  )
   
   const formElement = document.createElement('form');
+  formElement.classList.add('flex', 'flex-wrap', 'max-w-full')
+
+  const frequencyForm = formDiv() 
+  appendListToNode([
+    frequencyInput,
+    frequencyModes
+  ], frequencyForm)
+
+  const distanceForm = formDiv() 
+  appendListToNode([
+    distanceInput,
+    distanceModes
+  ], distanceForm)
+
   
   appendListToNode([
     frequencyForm,
     distanceForm,
-    frequencyInputLabel, 
-    frequencyInput, 
-    distanceInputLabel, 
-    distanceInput,
     button,
     resultP
   ], formElement)

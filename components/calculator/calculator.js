@@ -5,9 +5,14 @@ import submitButton from "../submitButton/submitButton.js";
 import appendListToNode from "../../utils/appendListToNode.js";
 import modes from "./modes.js";
 function calculator() {
+    function formDiv() {
+        const form = document.createElement('div');
+        form.classList.add('w-full', 'flex', 'flex-col');
+        return form;
+    }
     const [resultP, showResult] = hiddenP();
-    const { distanceForm, frequencyForm, getModeValues } = modes();
-    const { frequencyInputLabel, frequencyInput, distanceInput, distanceInputLabel, getInputValues } = inputs();
+    const { distanceModes, frequencyModes, getModeValues } = modes();
+    const [frequencyInput, distanceInput, getInputValues] = inputs();
     const validateInputs = () => {
         const [f, d] = getInputValues();
         if (isNaN(f) || isNaN(d)) {
@@ -30,15 +35,23 @@ function calculator() {
             d = d / 1000;
         showResult(`${getFresnel(d, f)}`);
     };
-    const button = submitButton('calcular', validateInputs, submitFunc);
+    const button = submitButton('Calcular', validateInputs, submitFunc);
+    button.classList.add('w-full', 'm-2', 'p-2', 'bg-blue-900', 'text-white', 'rounded-xl', 'basis-full');
     const formElement = document.createElement('form');
+    formElement.classList.add('flex', 'flex-wrap', 'max-w-full');
+    const frequencyForm = formDiv();
+    appendListToNode([
+        frequencyInput,
+        frequencyModes
+    ], frequencyForm);
+    const distanceForm = formDiv();
+    appendListToNode([
+        distanceInput,
+        distanceModes
+    ], distanceForm);
     appendListToNode([
         frequencyForm,
         distanceForm,
-        frequencyInputLabel,
-        frequencyInput,
-        distanceInputLabel,
-        distanceInput,
         button,
         resultP
     ], formElement);
