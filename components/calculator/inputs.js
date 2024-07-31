@@ -5,24 +5,21 @@ function inputs() {
         input.classList.add('flex', 'justify-between');
         return input;
     }
-    const frequencyInputLabel = document.createElement('label');
-    frequencyInputLabel.htmlFor = 'frequencyInput';
-    frequencyInputLabel.innerText = 'Frecuencia';
-    const frequencyInput = document.createElement('input');
-    frequencyInput.type = 'number';
-    frequencyInput.name = "frequencyInput";
-    frequencyInput.min = '1';
-    frequencyInput.step = 'any';
-    frequencyInput.required = true;
-    const distanceInputLabel = document.createElement('label');
-    distanceInputLabel.htmlFor = 'distanceInput';
-    distanceInputLabel.innerText = 'Distancia';
-    const distanceInput = document.createElement('input');
-    distanceInput.type = 'number';
-    distanceInput.name = 'distanceInput';
-    distanceInput.min = '1';
-    distanceInput.step = 'any';
-    distanceInput.required = true;
+    function inputForm(name, labelText) {
+        const label = document.createElement('label');
+        label.htmlFor = name;
+        label.innerText = labelText;
+        const input = document.createElement('input');
+        input.classList.add('border', 'border-gray-400', 'rounded-xl', 'p-1');
+        input.type = 'number';
+        input.name = name;
+        input.min = '1';
+        input.step = 'any';
+        input.required = true;
+        return [label, input];
+    }
+    const [frequencyInputLabel, frequencyInput] = inputForm('frequencyInput', 'Frecuencia');
+    const [distanceInputLabel, distanceInput] = inputForm('distanceInput', 'Distancia');
     const frequency = inputDiv();
     appendListToNode([frequencyInputLabel, frequencyInput], frequency);
     const distance = inputDiv();

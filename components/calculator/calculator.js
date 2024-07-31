@@ -11,7 +11,7 @@ function calculator() {
         return form;
     }
     const [resultP, showResult] = hiddenP();
-    const { distanceModes, frequencyModes, getModeValues } = modes();
+    const [distanceModes, frequencyModes, getModeValues] = modes();
     const [frequencyInput, distanceInput, getInputValues] = inputs();
     const validateInputs = () => {
         const [f, d] = getInputValues();
@@ -33,12 +33,12 @@ function calculator() {
             f = f / 1000;
         if (dT === 'm')
             d = d / 1000;
-        showResult(`${getFresnel(d, f)}`);
+        showResult(`Radio (en metros): ${getFresnel(d, f)}`);
     };
     const button = submitButton('Calcular', validateInputs, submitFunc);
     button.classList.add('w-full', 'm-2', 'p-2', 'bg-blue-900', 'text-white', 'rounded-xl', 'basis-full');
     const formElement = document.createElement('form');
-    formElement.classList.add('flex', 'flex-wrap', 'max-w-full');
+    formElement.classList.add('flex', 'flex-wrap', 'gap-2', 'max-w-full');
     const frequencyForm = formDiv();
     appendListToNode([
         frequencyInput,

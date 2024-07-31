@@ -12,27 +12,28 @@ function inputs(): [
     return input
   }
 
-  const frequencyInputLabel = document.createElement('label')
-  frequencyInputLabel.htmlFor = 'frequencyInput'
-  frequencyInputLabel.innerText = 'Frecuencia'
+  function inputForm(name: string, labelText: string): [
+    HTMLLabelElement,
+    HTMLInputElement
+  ] {
+    const label = document.createElement('label')
+    label.htmlFor = name
+    label.innerText = labelText
 
-  const frequencyInput = document.createElement('input')
-  frequencyInput.type = 'number'
-  frequencyInput.name = "frequencyInput"
-  frequencyInput.min = '1'
-  frequencyInput.step = 'any'
-  frequencyInput.required = true
+    const input = document.createElement('input')
+    input.classList.add('border', 'border-gray-400', 'rounded-xl', 'p-1')
+    input.type = 'number'
+    input.name = name
+    input.min = '1'
+    input.step = 'any'
+    input.required = true
 
-  const distanceInputLabel = document.createElement('label')
-  distanceInputLabel.htmlFor = 'distanceInput'
-  distanceInputLabel.innerText = 'Distancia'
+    return [label, input]
+  }
 
-  const distanceInput = document.createElement('input')
-  distanceInput.type = 'number'
-  distanceInput.name = 'distanceInput'
-  distanceInput.min = '1'
-  distanceInput.step = 'any'
-  distanceInput.required = true
+  const [frequencyInputLabel, frequencyInput] = inputForm('frequencyInput', 'Frecuencia')
+
+  const [distanceInputLabel, distanceInput] = inputForm('distanceInput', 'Distancia')
 
   const frequency = inputDiv()
   appendListToNode([frequencyInputLabel, frequencyInput], frequency)

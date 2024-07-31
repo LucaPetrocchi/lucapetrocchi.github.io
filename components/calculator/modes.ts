@@ -1,11 +1,15 @@
 import appendListToNode from "../../utils/appendListToNode.js"
 import getRadioButton from "../../utils/getRadioButton.js"
 
-function modes() {
+function modes(): [
+  HTMLFormElement,
+  HTMLFormElement,
+  () => [string, string]
+] {
 
-  function modeForm () {
+  function modeForm() {
     const form = document.createElement('form')
-    form.classList.add('flex', 'gap-4', 'border', 'border-black')
+    form.classList.add('flex', 'gap-4')
     return form
   }
 
@@ -66,11 +70,11 @@ function modes() {
     return [fT, dT]
   }
 
-  return {
+  return [
     distanceModes,
     frequencyModes,
     getModeValues
-  }
+  ]
 
 }
 

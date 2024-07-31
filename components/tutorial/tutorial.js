@@ -5,8 +5,21 @@ function tutorial() {
     const tutorialImg = document.createElement('img');
     tutorialImg.src = "../../../static/images/fresnelFormula.png";
     tutorialImg.width = 200;
-    const tutorialText = document.createElement('p');
-    tutorialText.innerText = 'explicacion';
+    const textAssembler = (strings) => {
+        const div = document.createElement('div');
+        strings.map((s) => {
+            const p = document.createElement('p');
+            p.classList.add('py-2');
+            p.innerText = s;
+            div.appendChild(p);
+        });
+        return div;
+    };
+    const tutorialText = textAssembler([
+        'La Zona de Fresnel es una serie de áreas elipsoidales entre una antena emisora y una receptora.',
+        'Para asegurarse de que la señal se reciba correctamente, el radio que ocupa la primera Zona de Fresnel debería estar idealmente libre de obstáculos.',
+        'El número de Zonas de Fresnel es infinito -- no obstante, solo las primeras tres se consideran significativas.'
+    ]);
     appendListToNode([
         tutorialImg,
         tutorialText
