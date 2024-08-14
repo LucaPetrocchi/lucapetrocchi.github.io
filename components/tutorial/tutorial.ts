@@ -24,7 +24,9 @@ function tutorial() {
   const tutorialText = textAssembler([
     'La Zona de Fresnel es una serie de áreas elipsoidales entre una antena emisora y una receptora.',
     'Para asegurarse de que la señal se reciba correctamente, el radio que ocupa la primera Zona de Fresnel debería estar idealmente libre de obstáculos.',
-    'El número de Zonas de Fresnel es infinito -- no obstante, solo las primeras tres se consideran significativas.'
+    'El número de Zonas de Fresnel es infinito -- no obstante, solo las primeras tres se consideran significativas.',
+    '',
+    "Hecho por Luca Petrocchi"
   ])
   
   appendListToNode([
