@@ -11,7 +11,7 @@ function inputs() {
         label.innerText = labelText;
         const input = document.createElement('input');
         input.classList.add('border', 'border-gray-400', 'rounded-xl', 'p-1');
-        input.type = 'number';
+        input.type = "string";
         input.name = name;
         input.min = '1';
         input.step = 'any';
@@ -25,8 +25,8 @@ function inputs() {
     const distance = inputDiv();
     appendListToNode([distanceInputLabel, distanceInput], distance);
     const getInputValues = () => {
-        const f = parseFloat(frequencyInput.value);
-        const d = parseFloat(distanceInput.value);
+        const f = parseFloat(frequencyInput.value.replace(/\D/g, '').replace(/,/, "."));
+        const d = parseFloat(distanceInput.value.replace(/\D/g, '').replace(/,/, "."));
         return [f, d];
     };
     return [
