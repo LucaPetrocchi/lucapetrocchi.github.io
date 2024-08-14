@@ -43,8 +43,8 @@ function inputs(): [
   
 
   const getInputValues = (): [f: number, d: number] => {
-    const f = parseFloat(frequencyInput.value.replace(/\D/g,'').replace(/,/, "."))
-    const d = parseFloat(distanceInput.value.replace(/\D/g,'').replace(/,/, "."))
+    const f = parseFloat(frequencyInput.value.replace(/,/, ".").replace(/[^\d\.]/g,''))
+    const d = parseFloat(distanceInput.value.replace(/,/, ".").replace(/[^\d\.]/g,''))
 
     return [f, d]
   }
