@@ -26,7 +26,7 @@ function tutorial() {
     'Para asegurarse de que la señal se reciba correctamente, el radio que ocupa la primera Zona de Fresnel debería estar idealmente libre de obstáculos.',
     'El número de Zonas de Fresnel es infinito -- no obstante, solo las primeras tres se consideran significativas.',
     '',
-    "Hecho por Luca Petrocchi"
+    "Hecho por Luca Petrocchi",
   ])
   
   appendListToNode([
